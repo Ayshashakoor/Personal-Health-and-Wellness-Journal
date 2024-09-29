@@ -1,0 +1,88 @@
+{% extends "docbase.html" %}
+{% block content %}
+
+<style>
+    th,
+    td {
+        padding: 10px;
+        font-size: large;
+        color: rgb(0, 0, 0);
+    }
+
+    th {
+        background-color: rgb(251, 103, 35);
+        color: white;
+    }
+</style>
+<div style="margin: 50px;">
+    <center>
+        <h1 style="margin: 10px;color:rgb(0, 0, 0)">Bookings</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="date" name="sDate" style="display: inline; width: 200px;" class="form-control" required>
+            <input type="date" name="eDate" style="display: inline; width: 200px;" class="form-control" required>
+            <select name="status" style="display: inline; width: 200px;" class="form-control">
+                <option value="" selected>Select Status</option>
+                <option value="Booked">Booked</option>
+                <option value="Approved">Approved</option>
+                <option value="Paid">Paid</option>
+            </select>
+            <input type="submit" class="btn btn-primary" value="Filter">
+            <br>
+            <br>
+        </form>
+        <table style="margin-top: 40px;" class="w-100">
+            <tr>
+                <th>Sl/No.</th>
+                <th>Date</th>
+                <th>Doctor</th>
+                <th>Email</th>
+                <th>Specialization</th>
+                <th>Patient</th>
+                <th>Email</th>
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+                <th>Token</th>
+                <th>Payment</th>
+                <th>Status</th>
+            </tr>
+
+            {% for d in data %}
+            <tr>
+
+                <td>{{forloop.counter}}</td>
+                <td>{{d.bookeddate}}</td>
+                <td>{{d.docid.name}}</td>
+                <td>{{d.docid.email}}</td>
+                <td>{{d.docid.specialization}}</td>
+                <td>{{d.regid.name}}</td>
+                <td>{{d.regid.email}}</td>
+                <td>{{d.bookingdate}}</td>
+                <td>{{d.time}}</td>
+                <td>{{d.token}}</td>
+                <td>{% if d.status == 'Paid' %}Rs. 500/- {% else %} - {% endif %}</td>
+                <td>{{d.status}}</td>
+            </tr>
+            {% endfor %}
+        
+            <tr>
+                
+                <td colspan="10"></td>
+                <td>{{total}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="12"><input type="button" value="Print" onclick="window.print()" class="btn btn-primary btn-lg" style="width: 100%;"></td>
+            </tr>
+        </table>
+    </center>
+</div>
+
+
+</div>
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

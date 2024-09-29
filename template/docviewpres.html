@@ -1,0 +1,47 @@
+{% extends "docbase.html" %}
+{% block content %}
+
+<style>
+    th,
+    td {
+        padding: 10px;
+        font-size: large;
+        color: rgb(0, 0, 0);
+    }
+
+    th {
+        background-color: rgb(251, 103, 35);
+        color: white;
+    }
+</style>
+<div class="container" style="margin: auto;">
+    <center>
+        <h1 style="margin: 10px;color:rgb(0, 0, 0)">Prescriptions</h1>
+        <table style="margin-top: 40px;" class="w-100">
+            <tr>
+                <th>Sl/No.</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+            </tr>
+
+            {% for d in data %}
+            <tr>
+
+                <td>{{forloop.counter}}</td>
+                <td>{{d.diagnosis}}</td>
+                <td>{{d.prescription}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </center>
+</div>
+
+
+</div>
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

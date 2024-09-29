@@ -1,0 +1,66 @@
+{% extends "commonbaseuser.html" %}
+{% block content3 %}
+<section class="w3l-contact-2 py-5" id="contact">
+    <div class="mt-5 text-center">
+        <a href="userfj" class="btn btn-primary btn-lg">Food Journal</a>
+        <a href="userwj" class="btn btn-primary btn-lg">Workout Journal</a>
+        <a href="usersj" class="btn btn-primary btn-lg">Sleep Journal</a>
+        <a href="usermj" class="btn btn-primary btn-lg">Medical Journal</a>
+    </div>
+    <div class="container py-lg-5 py-md-4 py-2">
+        
+        <div class="w3l-header-sec text-center mb-md-5 mb-4">
+
+            <h1 style="font-size:60px;" class="text-center">Workout Journal</h1>
+        </div>
+        <div class="contact-grids">
+            <center>
+                <div class="w-50" style="margin: auto;">
+                    <form method="post" class="signin-form" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        <input type="number" min="1" name="duration" id="w3lName" placeholder="Workout Duration* (in hour)" class="contact-input"
+                            required="" />
+                        <textarea min="1" name="workouts" id="w3lName" placeholder="Workouts *" class="contact-input"
+                            required="" ></textarea>
+                        <div class="form-buttonhny text-center">
+                            <button class="btn btn-style btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </center>
+        </div>
+
+
+
+    </div>
+</section>
+
+
+<div class="other_form_bg w-100">
+    <table class="table table-secondary table-striped w-50 m-auto mb-5">
+        <tr class="table_head">
+            <th>SL/NO</th>
+            <th>Date</th>
+            <th>Workouts</th>
+            <th>Duration</th>
+        </tr>
+        {% for d1 in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{d1.date}}</td>
+            <td>{{d1.workouts}}</td>
+            <td>{{d1.duration}} hour</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "docbase.html" %}
+{% block content %}
+
+<style>
+    th,
+    td {
+        padding: 10px;
+        font-size: large;
+        color: rgb(0, 0, 0);
+    }
+
+    th {
+        background-color: rgb(251, 103, 35);
+        color: white;
+    }
+</style>
+<div style="margin: 50px;">
+    <center>
+        <h1 style="margin: 10px;color:rgb(0, 0, 0)">Booking History</h1>
+        <table style="margin-top: 40px;" class="w-100">
+            <tr>
+                <th>Sl/No.</th>
+                <th>Date</th>
+                <th>Patient</th>
+                <th>Email</th>
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+                <th>Token</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+
+            {% for d in data %}
+            <tr>
+
+                <td>{{forloop.counter}}</td>
+                <td>{{d.bookeddate}}</td>
+                <td>{{d.regid.name}}</td>
+                <td>{{d.regid.email}}</td>
+                <td>{{d.bookingdate}}</td>
+                <td>{{d.time}}</td>
+                <td>{{d.token}}</td>
+                <td>{{d.status}}</td>
+                <td><a href="/docviewpres?id={{d.id}}" class="btn btn-warning">View Prescription</a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </center>
+</div>
+
+
+</div>
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

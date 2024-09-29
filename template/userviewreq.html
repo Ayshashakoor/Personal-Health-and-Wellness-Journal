@@ -1,0 +1,61 @@
+{% extends "commonbaseuser.html" %}
+{% block content3 %}
+
+<style>
+    th,
+    td {
+        padding: 10px;
+        font-size: large;
+        color: rgb(0, 0, 0);
+    }
+
+    th {
+        background-color: rgb(251, 103, 35);
+        color: white;
+    }
+</style>
+<div style="margin: 50px;">
+    <center>
+        <h1 style="margin: 10px;color:rgb(0, 0, 0)">Requests</h1>
+        <table style="margin-top: 40px;" class="w-100">
+            <tr>
+                <th>Age</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>BMI</th>
+                <th>BMR</th>
+                <th>Goal</th>
+                <th>Required Calorie</th>
+                <th>Activity Status</th>
+                <th>Health Status</th>
+                <th>Status</th>
+            </tr>
+
+            {% for d in data %}
+            <tr>
+
+                <td>{{d.user.age}}</td>
+                <td>{{d.height}}</td>
+                <td>{{d.weight}}</td>
+                <td>{{d.bmi}}</td>
+                <td>{{d.bmr}}</td>
+                <td>{{d.goal}}</td>
+                <td><strong>{{d.reqCal}}</strong></td>
+                <td>{{d.activeStatus}}</td>
+                <td>{{d.healthstat}}</td>
+                <td>{{d.status}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </center>
+</div>
+
+
+</div>
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

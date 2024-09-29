@@ -1,0 +1,76 @@
+{% extends "commonbaseuser.html" %}
+{% block content3 %}
+
+<div>
+    <center>
+        <h1 style="padding: 90px;">WELCOME {{name}}</h1>
+    </center>
+</div>
+<div class="row container-fluid">
+    <div class="col-4 text-center alert-dark">
+        <h2>Food journal</h2>
+        <br>
+        {% for fj in fjs %}
+        <div class="row container">
+            
+            <div class="col-2"><strong>{{fj.date}}</strong></div>
+            <div class="col-5"><progress max="{{reqCal}}" value="{{fj.calorieIntake}}" style="height: 30px;"></progress><br> {{fj.calorieIntake}} / {{reqCal}}</div>
+            <div class="col-5">
+                {% if fj.status == "Calorie in control" %}
+                <h4 class="text-success">{{fj.status}}</h4>
+                {% else %} 
+                <h4 class="text-danger">{{fj.status}}</h4>
+                {% endif %}
+            </div>
+        </div>
+         
+        {% endfor %}
+    </div>
+    <div class="col-4 text-center alert-secondary">
+        <h3>Sleep journal</h3>
+        <br>
+        {% for sj in sjs %}
+        <div class="row container">
+            
+            <div class="col-2"><strong>{{sj.date}}</strong></div>
+            <div class="col-5">
+                {% if age > 6 and 12 >= age %}
+                    <progress max="12" min="9" value="{{sj.duration}}" style="height: 30px;"></progress><br> Required 9 to 12 hours
+                {% elif age > 13 and 18 >= age %}
+                    <progress max="10" min="8" value="{{sj.duration}}" style="height: 30px;"></progress><br> Required 8 to 10 hours
+                {% elif age > 18 and 64 >= age %}
+                    <progress max="9" min="7" value="{{sj.duration}}" style="height: 30px;"></progress><br> Required 7 to 9 hours
+                {% elif age > 65 %}
+                    <progress max="8" min="7" value="{{sj.duration}}" style="height: 30px;"></progress><br> Required 7 to 8 hours
+                {% else %}
+                    <progress max="12" min="16" value="{{sj.duration}}" style="height: 30px;"></progress><br> Required 12 to 16 hours
+                {% endif %}
+
+            </div>
+            <div class="col-5">
+                {% if sj.status == "Adequate Sleep" %}
+                <h4 class="text-success">{{sj.status}}</h4>
+                {% else %} 
+                <h4 class="text-danger">{{sj.status}}</h4>
+                {% endif %}
+            </div>
+        </div>
+         
+        {% endfor %}
+    </div>
+    <div class="col-4 text-center alert-dark">
+        <h3>Workout journal</h3>
+        <br>
+        {% for wj in wjs %}
+        <div class="row container">
+    
+            <div class="col-2"><strong>{{wj.date}}</strong></div>
+            <div class="col-5"><h4>{{wj.duration}} hour / day</h4></div>
+            <div class="col-5"><p>{{wj.workouts}}</p> </div>
+        </div>
+         
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

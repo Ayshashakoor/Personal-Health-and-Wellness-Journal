@@ -1,0 +1,35 @@
+{% extends "commonbaseadmin.html" %}
+{% block content %}
+
+<div class="other_form_bg w-100">
+
+    <h1 class="text-center">Users</h1>
+
+    <table class="table table-secondary table-striped w-50 m-auto mb-5">
+        <tr class="table_head">
+            <th>Sl/No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.age}}</td>
+            <td>{{d.gender}}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</div>
+
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

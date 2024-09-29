@@ -1,0 +1,38 @@
+{% extends 'expertbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <h3>Chats</h3> <br>
+    <table class="table table-dark table-striped table-hover" style="width: 30%;">
+        <tr>
+            <th class="text-center">User</th>
+            <th class="text-center">Chat</th>
+        </tr>
+        {% for o in ops %}
+            {% if o.id in s %}
+                <tr>
+                    <td class="text-center">{{o.name}}</td>
+                    <td class="text-center"><a href="/expertChat?id={{o.id}}&url=expertChats"
+                        ><input
+                            type="button"
+                            name="submit"
+                            value="Chat"
+                            class="btn btn-warning"
+                    /></a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+</center>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+{% endblock %}+

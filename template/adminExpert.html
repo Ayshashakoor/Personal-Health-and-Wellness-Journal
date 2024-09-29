@@ -1,0 +1,65 @@
+{% extends "commonbaseadmin.html" %}
+{% block content %}
+
+<div class="other_form_bg w-100">
+    {% if dataIn %}
+    <h1 class="text-center">Inactive Experts</h1>
+    <table class="table table-secondary table-striped w-50 m-auto mb-5">
+        <tr class="table_head">
+            <th>Sl/No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>License</th>
+            <th>Action</th>
+        </tr>
+        {% for d in dataIn %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.con}}</td>
+            <td>{{d.add}}</td>
+            <td><a href="/static/media/{{d.lic}}" target="_blank"><img src="/static/media/{{d.lic}}" width="200" alt=""></a></td>
+            <td><a href="/adminUpdateExpert?id={{d.user.id}}&status=1" class="btn btn-success">Make Active</a></td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+    {% endif %}
+    {% if data %}
+    <h1 class="text-center">Active Experts</h1>
+    <table class="table table-secondary table-striped w-50 m-auto mb-5">
+        <tr class="table_head">
+            <th>Sl/No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>License</th>
+            <th>Action</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.con}}</td>
+            <td>{{d.add}}</td>
+            <td><a href="/static/media/{{d.lic}}" target="_blank"><img src="/static/media/{{d.lic}}" width="200" alt=""></a></td>
+            <td><a href="/adminUpdateExpert?id={{d.user.id}}&status=0" class="btn btn-danger">Make Inactive</a></td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</div>
+
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

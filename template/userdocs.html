@@ -1,0 +1,65 @@
+{% extends "commonbaseuser.html" %}
+{% block content3 %}
+
+<style>
+    h3,fieldset{padding: 10px;
+    color:rgb(0, 0, 0)}
+</style>
+<h1 align="center" class="bg-light"><u>DOCTORS</u></h1>
+<div class="w3-services-grids py-lg-4 text-center" style="padding: 20px;">
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="search" name="search" placeholder="Search here" style="padding: 5px 10px;" id="">
+        <input type="submit" value="🔍" style="background: none; border: none; outline: none;">
+    </form>
+    <br>
+    <br>
+    <div class="fea-gd-vv row">
+        {% for i in data %}
+        <div class="col-lg-4 col-md-7" style="margin-bottom: 30px">
+            <div class="feature-gd icon-yellow">
+                <div class="icon">
+                    <a href="/static/media/{{i.qualification}}" target="_blank"><img
+                            src="/static/media/{{i.qualification}}"
+                            style="
+                                height: 200px;
+                                width: 200px;
+                                padding-right: 26px;
+                                padding-bottom: 5px;
+                            "
+                    /></a>
+                </div>
+                <div class="info" style="margin-top: 50px">
+                    <h3>{{i.name}}</h3>
+                    <h3>{{i.specialization}}</h3>
+                    <h3>Experience: {{i.experience}}</h3>
+                    <hr>
+                    <p>Contact: {{i.phone}}</p>
+                    <p>Email: {{i.email}}</p>
+                    <p>Address: {{i.address}}</p>
+                    <hr>
+                    <ul>
+                        <li class="cary-li-w3-agileits">
+                            <div class="snipcart-details top_brand_home_details">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <a href="/userviewdocdetails?id={{i.id}}"
+                                            ><input
+                                                type="button"
+                                                name="submit"
+                                                value="Book Doctor"
+                                                class="btn btn-primary"
+                                        /></a>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

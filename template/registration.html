@@ -1,0 +1,150 @@
+{% extends "commonbase.html" %} {% block content1 %}
+
+<!-- contact section -->
+
+<section class="w3l-contact-2 py-5" id="contact">
+	<div class="container py-lg-5 py-md-4 py-2">
+		<div class="w3l-header-sec text-center mb-md-5 mb-4">
+			<h5 class="sub-title">Join Us</h5>
+			<h3 class="title-style">Registration</h3>
+		</div>
+
+		<div class="contact-grids" style="display: flex; justify-content: center">
+			<!-- <div class="contact-left-img">
+                    <img src="assets/images/contact.jpg" class="img-fluid radius-image" alt="">
+                </div> -->
+			<center>
+				<div class="contact-center" style="margin: auto">
+					<form method="post" enctype="multipart/form-data" class="signin-form">
+						{% csrf_token %}
+						<div class="input-grids">
+							<input
+								type="text"
+								name="name"
+								id="w3lName"
+								placeholder="Your Name*"
+								class="contact-input"
+								required=""
+							/>
+
+							<input
+								type="email"
+								name="email"
+								id="w3lSender"
+								placeholder="Your Email*"
+								class="contact-input"
+								required=""
+							/>
+						</div>
+						<div class="input-grids">
+							<input
+								type="number"
+                                min="10"
+                                max="100"
+								name="age"
+								id="w3lName"
+								placeholder="Your Age*"
+								class="contact-input"
+								required=""
+							/>
+
+							<select
+								name="gender"
+								id="w3lSender"
+								class="form-control"
+                                style="height: 80%;"
+								required=""
+							>
+                            <option value="" selected disabled>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            </select>
+						</div>
+
+						<div class="form-input">
+							<input
+								type="password"
+								name="psw"
+								id="w3lWebsite"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+								placeholder="Your Password*"
+								class="contact-input"
+								required=""
+							/>
+						</div>
+
+						<div class="form-buttonhny text-lg-center text-center">
+							<button class="btn btn-style btn-primary">Register</button>
+						</div>
+					</form>
+				</div>
+			</center>
+		</div>
+
+		<!-- 
+            <div class="contact-left mt-5 pt-lg-5">
+                <div class="w3l-header-sec text-center mb-md-5 mb-4">
+                    <h5 class="sub-title">Find Us</h5>
+                    <h3 class="title-style">Address Info</h3>
+                </div>
+                <div class="cont-details">
+                    <div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Company Address</h6>
+                            <p>Wildlive,#2214 cravel street, NY - 34336.</p>
+                        </div>
+                    </div>
+                    <div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Call Us</h6>
+                            <p><a href="tel:+1(21) 343 5677">+1(21) 343 5677</a></p>
+                            <p><a href="tel:+1(21) 343 5678">+1(21) 343 5678</a></p>
+                        </div>
+                    </div>
+                    <div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <i class="fas fa-mail-bulk"></i>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Email Us</h6>
+                            <p><a href="mailto:example@mail.com" class="mail">example@mail.com</a></p>
+                            <p><a href="mailto:example@mail2.com" class="mail">example@mail2.com</a></p>
+                        </div>
+                    </div>
+                    <div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Customer Support</h6>
+                            <p><a href="mailto:info@support.com" class="mail">info@support.com</a></p>
+                            <p><a href="mailto:info@support2.com" class="mail">info@support2.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+		<!-- 
+
+            <div class="map-iframe mt-5 pt-md-4">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d-0.3817765050863085!3d51.528307984912544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C+UK!5e0!3m2!1sen!2spl!4v1562654563739!5m2!1sen!2spl"
+                    width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+            </div> -->
+	</div>
+</section>
+
+<!-- //contact section -->
+
+{% if messages %} {% for msg in messages %}
+<script>
+	alert('{{msg}}');
+</script>
+{% endfor %} {% endif %} {% endblock %}

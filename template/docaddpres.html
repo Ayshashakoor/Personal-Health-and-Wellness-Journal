@@ -1,0 +1,60 @@
+{% extends "docbase.html" %}
+{% block content %}
+
+<section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="w3l-header-sec text-center mb-md-5 mb-4">
+            
+            <h1 style="font-size:60px;" align="center">Add Prescription</h1>
+        </div>
+        <div class="contact-grids">
+            <center>
+            <div class="contact-right">
+                <form  method="post" class="signin-form">
+                    {% csrf_token %}
+                        <textarea name="diagnosis" id="txtDate" class="contact-input" placeholder="Add Diagnosis" required="" ></textarea>
+                        <textarea name="prescription" id="w3lSender" class="contact-input" placeholder="Add Prescription" required="" ></textarea>
+                   <br>
+                    <div class="form-buttonhny text-lg-center">
+                        <button class="btn btn-style btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+        </div>
+        <br>
+        <br>
+        <br>
+        <table class="table table-secondary table-hover table-striped">
+            <tr>
+                <th>Sl/No.</th>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+            </tr>
+            {% for d in data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{d.date}}</td>
+                    <td>{{d.diagnosis}}</td>
+                    <td>{{d.prescription}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+   
+      
+    </div>
+</section>
+{% if messages %}
+{% for msg in messages %}
+<script>alert("{{msg}}")</script>
+{% endfor %}
+{% endif %}
+<script>
+    // Get the current date
+    var today = new Date().toISOString().split('T')[0];
+    
+    // Set the min attribute of the date input field
+    document.getElementById('txtDate').setAttribute('min', today);
+  </script>
+{% endblock %}
